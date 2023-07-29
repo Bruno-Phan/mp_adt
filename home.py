@@ -1,8 +1,10 @@
 import streamlit as st
+import pandas as pd
 from streamlit_option_menu import option_menu
 from pycaret.anomaly import *
 from streamlit_extras.switch_page_button import switch_page
 from preprocess import DataProcessingTool
+import pygwalker as pyg
 
 st.set_page_config(page_title="MP_ADT", layout="wide",)
 
@@ -22,15 +24,21 @@ def main():
     def change_data_state():
         st.session_state.data="yes"
 
-    # opt = st.radio("Dataset Type:",["Unlabeled", "Labeled"])
-    # uploaded = st.file_uploader("Upload your Labeled CSV data", type=["csv"], on_change=change_data_state)
+    st.markdown(f'<h2 style="text-align:center;">Analyze data</h2>', unsafe_allow_html=True)
+    opt = st.radio("Dataset Type:",["Unlabeled", "Labeled"])
+    uploaded = st.file_uploader("Upload your Labeled CSV data", type=["csv"], on_change=change_data_state)
 
-    # if selected=="Analyze data" and uploaded is not None:
-    #     data = pd.read_csv(uploaded)
-    #     pyg.walk(data,env='Streamlit', dark="light")
-    #     st.cache_data.clear()
-    #     st.session_state.data="none"
-    #     dprocess.reset()
+    if selected=="Home" and uploaded is not None:
+        data = pd.read_csv(uploaded)
+        if opt == "Unlabeled":
+            data['timestamp'] = pd.to_datetime(data['timestamp'], format='%Y/%m/%d %H:%M:%S')
+        if opt == "Labeled":
+            data['timestamp'] = pd.to_datetime(data['timestamp'], format='%d/%m/%Y %H:%M')
+        
+        pyg.walk(data,env='Streamlit', dark="light")
+        st.cache_data.clear()
+        st.session_state.data="none"
+        dprocess.reset()
 
     if selected=="Unsupervised AD":
     #  st.runtime.legacy_caching.clear_cache()
