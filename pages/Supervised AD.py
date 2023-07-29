@@ -90,14 +90,14 @@ class TrainTool:
 
         _self.show_save_button = True
 
-        if st.button("Save model"):
-            dtrain.saved_model_filename = dtrain.save_trained_sup_model(dtrain.knn, "sup_KNN_model")
-            st.success(f"Model saved as '{dtrain.saved_model_filename}'")
+        # if st.button("Save model"):
+        dtrain.saved_model_filename = dtrain.save_trained_sup_model(dtrain.knn, "sup_KNN_model")
+        st.success(f"Model saved as '{dtrain.saved_model_filename}'")
 
-            # Provide download button for the saved model
-            with open(dtrain.saved_model_filename, "rb") as f:
-                model_bytes = BytesIO(f.read())
-            st.download_button("Download the saved model", model_bytes, file_name=dtrain.saved_model_filename, mime="application/octet-stream")
+        # Provide download button for the saved model
+        with open(dtrain.saved_model_filename, "rb") as f:
+            model_bytes = BytesIO(f.read())
+        st.download_button("Download the saved model", model_bytes, file_name=dtrain.saved_model_filename, mime="application/octet-stream")
         
     @st.cache_resource(experimental_allow_widgets=True)
     def svc_train(_self, data, x, y, x_train, y_train, x_test, y_test):
@@ -119,14 +119,14 @@ class TrainTool:
         
         _self.show_save_button = True
 
-        if st.button("Save model"):
-            dtrain.saved_model_filename = dtrain.save_trained_sup_model(dtrain.svc, "sup_svc_model")
-            st.success(f"Model saved as '{dtrain.saved_model_filename}'")
+        # if st.button("Save model"):
+        dtrain.saved_model_filename = dtrain.save_trained_sup_model(dtrain.svc, "sup_svc_model")
+        st.success(f"Model saved as '{dtrain.saved_model_filename}'")
 
-            # Provide download button for the saved model
-            with open(dtrain.saved_model_filename, "rb") as f:
-                model_bytes = BytesIO(f.read())
-            st.download_button("Download the saved model", model_bytes, file_name=dtrain.saved_model_filename, mime="application/octet-stream")
+        # Provide download button for the saved model
+        with open(dtrain.saved_model_filename, "rb") as f:
+            model_bytes = BytesIO(f.read())
+        st.download_button("Download the saved model", model_bytes, file_name=dtrain.saved_model_filename, mime="application/octet-stream")
 
     @st.cache_resource(experimental_allow_widgets=True)
     def etc_train(_self, data, x, y, x_train, y_train, x_test, y_test):
@@ -149,13 +149,13 @@ class TrainTool:
 
         _self.show_save_button=True
 
-        if st.button("Save model"):
-            dtrain.saved_model_filename = dtrain.save_trained_sup_model(dtrain.etc, "sup_etc_model")
-            st.success(f"Model saved as '{dtrain.saved_model_filename}'")
-            # Provide download button for the saved model
-            with open(dtrain.saved_model_filename, "rb") as f:
-                model_bytes = BytesIO(f.read())
-            st.download_button("Download the saved model", model_bytes, file_name=dtrain.saved_model_filename, mime="application/octet-stream")
+        # if st.button("Save model"):
+        dtrain.saved_model_filename = dtrain.save_trained_sup_model(dtrain.etc, "sup_etc_model")
+        st.success(f"Model saved as '{dtrain.saved_model_filename}'")
+        # Provide download button for the saved model
+        with open(dtrain.saved_model_filename, "rb") as f:
+            model_bytes = BytesIO(f.read())
+        st.download_button("Download the saved model", model_bytes, file_name=dtrain.saved_model_filename, mime="application/octet-stream")
 
 dtrain = TrainTool()
 
