@@ -71,4 +71,4 @@ Wenn Sie mich kontaktieren möchten, erreichen Sie mich unter `marsel.perdoci(at
 
 ## Lizenz
 
-Dieses Projekt verwendet die folgende Lizenz: `[license_name](link_to_license)`.
+Dieses Projekt verwendet die folgende Lizenz: `Creative Commons Zero v1.0 Universal`.
